@@ -1,12 +1,13 @@
 import style from './filterInput.module.css';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { changeFilter } from 'redux/contactsSlice';
 
-export const FilterInput = ({ onFilterInput }) => {
+export const FilterInput = () => {
+  const dispatch = useDispatch();
+  const onFilterInput = (e) => {
+    dispatch(changeFilter(e.currentTarget.value))
+  }
     return <label> Search contact by name
           <input className={style.filterInput} type="text" onInput={onFilterInput} />
         </label>
-}
-
-FilterInput.propTypes = {
-  onFilterInput: PropTypes.func.isRequired,
 }
